@@ -5,7 +5,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 7 + 4 * 3;
+use Test::More tests => 7 + 4 * 3 + 1 + 3 + 2;
 use Math::Geometry::Planar::GPC::Polygon qw(new_gpc);
 ok(1, "use successful"); # If we made it this far, we're ok.
 
@@ -33,7 +33,7 @@ foreach my $action qw(INTERSECT UNION DIFFERENCE) {
 	ok(do {print $res->as_string(), "\n"}, "stringification");
 }
 
-exit;
+#exit;
 
 my @bound = (
   [1.29219233231504,1.2212767893659],
@@ -68,13 +68,19 @@ my @holes = (
  ],
 );
 
-$sub->add_polygon(\@bound, 0);
-foreach my $hole (@holes) {
-	$sub->add_polygon($hole, 1);
+if(1) {
+	my $sub = Math::Geometry::Planar::GPC::Polygon->new();
+	print "add polygon\n";
+	$sub->add_polygon(\@bound, 0);
+	ok(1, "add polygon");
+	foreach my $hole (@holes) {
+		$sub->add_polygon($hole, 1);
+		ok(1, "add hole");
+	}
+	$clp->add_polygon(\@rec, 0);
+
+	my $res;
+	my $action = "INTERSECT";
+	ok($res = $sub->clip_to($clp, $action), "clip $action working");
+	ok(do {print $res->as_string(), "\n"}, "stringification");
 }
-$clp->add_polygon(\@rec, 0);
-
-my $res = $sub->clip_to($clp, "INTERSECT");
-print "trying string\n";
-$res->as_string();
-

@@ -6,7 +6,7 @@ Copyright 2004 Eric L. Wilhelm
 GPL / Artistic License
 See Polygon.pm for details
 
-Version 0.01 (pre-release copy)
+Version 0.03 (pre-release copy)
 
 */
 
@@ -18,9 +18,20 @@ Version 0.01 (pre-release copy)
 #ifdef DEBUG_PRINT
     #define dbg_p(format, args...) printf(format, ## args);
 #else
-    #define dbg_p(format, args...) ;
+    #define dbg_p(format, ...) ;
 #endif
 
+SV* new (char* class);
+void add_polygon(SV* obj, SV* pg, int hole);
+void DESTROY(SV* obj);
+int from_file(SV* obj, char* filename, int want_hole);
+void to_file(SV* obj, char* filename, int want_hole);
+SV* clip_to(SV* obj, SV* clp, char* action);
+void add_polygon(SV* obj, SV* pg, int hole);
+void get_polygons(SV* obj);
+void pts_to_vertex_list(SV* pg, gpc_vertex_list* vl);
+AV* vertex_list_to_pts(gpc_vertex_list* vl);
+void gpc_free_polygon2(gpc_polygon *p);
 
 SV* new (char* class) {
 	gpc_polygon* p = malloc(sizeof(gpc_polygon));
@@ -104,10 +115,11 @@ SV* clip_to(SV* obj, SV* clp, char* action) {
 
 void add_polygon(SV* obj, SV* pg, int hole) {
 	gpc_polygon* p = (gpc_polygon*) SvIV(SvRV(obj));
-	int v;
-	gpc_vertex_list* c;
 	dbg_p("got my vl\n");
 	if(p->num_contours > 0) {
+		gpc_vertex_list* c;
+		MALLOC(c, sizeof(gpc_vertex_list), 
+			"addable contour creation\n");
 		pts_to_vertex_list(pg, c);
 		dbg_p("adding to existing\n");
 		gpc_add_contour(p, c, hole);
@@ -129,7 +141,7 @@ void add_polygon(SV* obj, SV* pg, int hole) {
 
 void get_polygons(SV* obj) {
 	Inline_Stack_Vars;
-	int c, v;
+	int c;
 	gpc_polygon* p = (gpc_polygon*) SvIV(SvRV(obj));
 	Inline_Stack_Reset;
 	if(p->num_contours < 1) {
@@ -186,7 +198,8 @@ AV* vertex_list_to_pts(gpc_vertex_list* vl) {
 	dbg_p("%d vertices\n", vl->num_vertices);
 	pts = newAV();
 	for(p = 0; p < vl->num_vertices; p++) {
-		av_push(pts, newRV_noinc((SV*) pt = newAV()));
+		pt = newAV();
+		av_push(pts, newRV_noinc((SV*) pt));
 		av_push(pt, newSVnv(vl->vertex[p].x));
 		av_push(pt, newSVnv(vl->vertex[p].y));
 		dbg_p("point %d: %0.2f, %0.2f\n", 

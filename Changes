@@ -1,3 +1,6 @@
 Changes
       0.01 - First public release.
+      0.02 - Added API documentation.
+      0.03 - Fix to allocation error.
+             Possibly Fixed WIN32 compile problem?
 

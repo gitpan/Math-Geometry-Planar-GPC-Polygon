@@ -9,3 +9,4 @@ README
 test.pl
 test_data/subjfile
 test_data/clipfile
+META.yml                                 Module meta-data (added by MakeMaker)
