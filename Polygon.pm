@@ -1,5 +1,5 @@
 package Math::Geometry::Planar::GPC::Polygon;
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 use 5.006;
 use strict;
@@ -20,7 +20,7 @@ use Inline (
 	C => Config =>
 	NAME => 'Math::Geometry::Planar::GPC::Polygon',
 	INC => "-I$include",
-	VERSION => '0.04',
+	VERSION => '0.05',
 	# BUILD_NOISY => 1,
 	# FORCE_BUILD => 1,
 	# CLEAN_AFTER_BUILD => 0,
@@ -60,14 +60,23 @@ Copyright 2004 Eric L. Wilhelm
 
 =head1 License
 
-This module and its C source code (functions.c) are freely
-redistributable under the GNU general public license (GPL).  See
-http://www.gnu.org for details.
+This module and its C source code (functions.c) are distributed under
+the same terms as Perl.  See the Perl source package for details.
 
-The General Polygon Clipping library (gpc.c and gpc.h) is also
-distributed under the GPL license.  A copy of these files has been
-included with this distribution strictly for convenience purposes.  See
-gpc.c for details.  Note that the C library is authored by Alan Murta.
+You may use this software under one of the following licenses:
+
+  (1) GNU General Public License
+    (found at http://www.gnu.org/copyleft/gpl.html)
+  (2) Artistic License
+    (found at http://www.perl.com/pub/language/misc/Artistic.html)
+
+
+The General Polygon Clipping library (gpc.c and gpc.h) is distributed as
+"free for non-commercial use".  See gpc.c for details.  A copy of these
+files has been included with this distribution strictly for convenience
+purposes, but YOU ARE RESPONSIBLE FOR ADHERING TO BOTH THE GPC LICENSE
+AND THE LICENSE OF THIS MODULE.  Note that the C library is authored by
+Alan Murta.
 
 You may want to check the GPC home page for a more current version:
 
@@ -91,6 +100,7 @@ This code comes with ABSOLUTELY NO WARRANTY of any kind.
   0.03 - Fix to allocation error.
          Possibly Fixed WIN32 compile problem?
   0.04 - Twiddling with WIN32 compile problem (last try)
+  0.05 - Corrected license statements.
 
 =cut
 ########################################################################
