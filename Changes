@@ -3,4 +3,5 @@ Changes
       0.02 - Added API documentation.
       0.03 - Fix to allocation error.
              Possibly Fixed WIN32 compile problem?
+      0.04 - Twiddling with WIN32 compile problem (last try)
 

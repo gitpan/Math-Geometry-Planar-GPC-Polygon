@@ -29,7 +29,7 @@ License
 
 Portability
     This module successfully compiles on i386 and solaris architectures
-    according to the cpan testers results. Hopefully, versions after 0.03
+    according to the cpan testers results. Hopefully, versions after 0.04
     will work on WIN32. I don't have any non-linux machines, so feel free to
     send patches.
 
@@ -41,6 +41,7 @@ Changes
       0.02 - Added API documentation.
       0.03 - Fix to allocation error.
              Possibly Fixed WIN32 compile problem?
+      0.04 - Twiddling with WIN32 compile problem (last try)
 
 Constructors
   new

@@ -1,5 +1,5 @@
 package Math::Geometry::Planar::GPC::Polygon;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use 5.006;
 use strict;
@@ -20,7 +20,7 @@ use Inline (
 	C => Config =>
 	NAME => 'Math::Geometry::Planar::GPC::Polygon',
 	INC => "-I$include",
-	VERSION => '0.03',
+	VERSION => '0.04',
 	# BUILD_NOISY => 1,
 	# FORCE_BUILD => 1,
 	# CLEAN_AFTER_BUILD => 0,
@@ -76,7 +76,7 @@ You may want to check the GPC home page for a more current version:
 =head1 Portability
 
 This module successfully compiles on i386 and solaris architectures
-according to the cpan testers results.  Hopefully, versions after 0.03
+according to the cpan testers results.  Hopefully, versions after 0.04
 will work on WIN32.  I don't have any non-linux machines, so feel free
 to send patches.
 
@@ -90,6 +90,7 @@ This code comes with ABSOLUTELY NO WARRANTY of any kind.
   0.02 - Added API documentation.
   0.03 - Fix to allocation error.
          Possibly Fixed WIN32 compile problem?
+  0.04 - Twiddling with WIN32 compile problem (last try)
 
 =cut
 ########################################################################
